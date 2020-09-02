@@ -16,7 +16,21 @@ class App extends Component {
         name: "Wookie",
       },
     ],
+  newDogName:""
   };
+ handleNewDogChange =(event) => {
+
+this.setState({newDogName: event.target.value})
+ }; 
+
+handleAdoptDog = (event) =>{
+  this.setState(state=>{
+return{ 
+  dogs:[...state.dogs, {name: state.newDogName}],
+  newDogName:""
+}
+  })
+};
 
   render() {
     return (
@@ -31,7 +45,11 @@ class App extends Component {
           ))}
         </ul>
         <br />
-        <div>Add Input and button here!</div>
+        <div>
+        <input type="text" onChange={this.handleNewDogChange} 
+        value={this.state.newDogName}/>
+        <button onClick={this.handleAdoptDog}>Adopt a dog</button>
+        </div>
       </div>
     );
   }
